@@ -39,6 +39,17 @@
 #define VGAUTH_PROTO_TRACE 0
 
 /*
+ * Maximum size of a single request on public pipe.
+ * Only SessionRequest is allowed.
+ */
+#define VGAUTH_MAX_PUBLIC_CONN_REQUEST_SIZE   512
+
+/*
+ * Maximum size of a single request on user private pipe.
+ */
+#define VGAUTH_MAX_PRIVATE_CONN_REQUEST_SIZE   (10 * 1024 * 1024)
+
+/*
  * Request types
  */
 typedef enum {
@@ -94,6 +105,11 @@ struct ProtoRequest {
    ProtoRequestType reqType;
 
    ProtoParseState parseState;
+
+   /*
+    * Total size of data read off the wire for this request.
+    */
+   gsize totalSize;
 
    union {
       struct {
@@ -1118,6 +1134,8 @@ ServiceProtoReadAndProcessRequest(ServiceConnection *conn)
    gsize len;
    gboolean bRet;
    GError *gErr = NULL;
+   gsize maxReqSize = conn->isPublic ? VGAUTH_MAX_PUBLIC_CONN_REQUEST_SIZE
+                                     : VGAUTH_MAX_PRIVATE_CONN_REQUEST_SIZE;
 
    /*
     * If nothing is currently being processed start a fresh one.
@@ -1147,6 +1165,17 @@ ServiceProtoReadAndProcessRequest(ServiceConnection *conn)
       if (err != VGAUTH_E_OK) {
          goto quit;
       }
+
+      if (len > maxReqSize - req->totalSize) {
+         err = VGAUTH_E_COMM;
+         Warning("%s: connection %d request size %" G_GSIZE_FORMAT " exceeds "
+                 "maximum allowed size %" G_GSIZE_FORMAT "\n",
+                 __FUNCTION__, conn->connId, req->totalSize + len, maxReqSize);
+         g_free(data);
+         goto quit;
+      }
+      req->totalSize += len;
+
 #if VGAUTH_PROTO_TRACE
       if (req->rawData) {
          req->rawData = g_strdup_printf("%s%s", req->rawData, data);
