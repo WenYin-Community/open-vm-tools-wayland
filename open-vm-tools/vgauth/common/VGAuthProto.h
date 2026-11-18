@@ -68,6 +68,16 @@
 #define  SUPERUSER_NAME "root"
 #endif
 
+#ifndef _WIN32
+/*
+ * Maximum length (including nul) of a UNIX domain socket path.
+ * For some reason, this is simply hardcoded in sys/un.h
+ */
+#ifndef UNIX_PATH_MAX
+#define UNIX_PATH_MAX   108
+#endif
+#endif
+
 
 /*
  * XXX For readbility/commentary purposes, all element names are

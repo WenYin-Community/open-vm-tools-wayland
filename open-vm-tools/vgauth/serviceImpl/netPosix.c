@@ -123,13 +123,6 @@ ServiceNetworkListen(ServiceConnection *conn,            // IN/OUT
    uid_t uid;
    gid_t gid;
 
-   /*
-    * For some reason, this is simply hardcoded in sys/un.h
-    */
-#ifndef UNIX_PATH_MAX
-#define UNIX_PATH_MAX   108
-#endif
-
    ASSERT(strlen(conn->pipeName) < UNIX_PATH_MAX);
 
    conn->sock = -1;

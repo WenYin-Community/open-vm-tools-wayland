@@ -37,6 +37,7 @@
 #include <signal.h>
 #include "VGAuthInt.h"
 #include "VGAuthLog.h"
+#include "VGAuthProto.h"
 
 
 /*
@@ -59,12 +60,6 @@ VGAuth_NetworkConnect(VGAuthContext *ctx)
    int fd;
    int ret;
    struct sockaddr_un sockaddr;
-   /*
-    * For some reason, this is simply hardcoded in sys/un.h
-    */
-#ifndef UNIX_PATH_MAX
-#define UNIX_PATH_MAX   108
-#endif
 
    sockaddr.sun_family = AF_UNIX;
 

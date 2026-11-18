@@ -712,6 +712,12 @@ Proto_TextContents(GMarkupParseContext *parseContext,
       req->reqData.sessionReq.version = atoi(val);
       break;
    case PARSE_STATE_USERNAME:
+      if (!Usercheck_UsernameIsLegal(val)) {
+         g_set_error(error, G_MARKUP_ERROR_PARSE, VGAUTH_E_INVALID_ARGUMENT,
+                     "Invalid user name (illegal characters or length) '%s'",
+                     val);
+         goto done;
+      }
       switch (req->reqType) {
       case PROTO_REQUEST_SESSION_REQ:
          SET_CHECK_DUP(req->reqData.sessionReq.userName, val);

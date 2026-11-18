@@ -25,6 +25,7 @@
 
 #include "usercheck.h"
 #include "VGAuthLog.h"
+#include "VGAuthProto.h"
 
 #ifndef _WIN32
 #include <stdio.h>
@@ -79,7 +80,18 @@
  * Solaris as well, but that path is untested.
  */
 
+#ifdef _WIN32
 #define MAX_USER_NAME_LEN 256
+#else
+/*
+ * On posix systems, username is mapped into its private pipe path as:
+ * SERVICE_PUBLIC_PIPE_NAME + "-" + userName
+ * And the pipe path length must be < UNIX_PATH_MAX.
+ * In below definition, "-1" accounts for the the hyphen ("-") and
+ * sizeof SERVICE_PUBLIC_PIPE_NAME accounts for the terminating NULL.
+ */
+#define MAX_USER_NAME_LEN (UNIX_PATH_MAX - sizeof SERVICE_PUBLIC_PIPE_NAME - 1)
+#endif
 
 /*
  * A single retry works for the LDAP case, but try more often in case NIS
@@ -479,7 +491,8 @@ done:
  ******************************************************************************
  * Usercheck_UsernameIsLegal --                                          */ /**
  *
- * Checks to see if the userName contains any illegal characters.
+ * Checks to see if the userName contains any illegal characters or exceeds
+ * the allowed length.
  *
  * @param[in]   userName        The userName to check.
  *
@@ -492,9 +505,9 @@ gboolean
 Usercheck_UsernameIsLegal(const gchar *userName)
 {
    /*
-    * This catches the stuff that will upset the fileSystem when the
-    * username is used as part of the aliasStore filename.  Note
-    * that this is not a complete list.
+    * This catches the stuff that will upset the fileSystem when the username
+    * is used as part of the aliasStore filename or user private pipe path.
+    * Note that this is not a complete list.
     *
     * Different Linux distros seem to add additonal restrictions. QE has found
     * the following are legal chars in usernames:
