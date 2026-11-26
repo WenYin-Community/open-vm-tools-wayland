@@ -11,7 +11,7 @@
 
 pkgbase=open-vm-tools-wayland
 pkgname=('open-vm-tools-wayland' 'open-vm-tools-wayland-desktop')
-pkgver=13.1.0
+pkgver=13.1.1
 pkgrel=1
 pkgdesc='Open Virtual Machine Tools for VMware guests, with native Wayland support'
 arch=('x86_64')

@@ -2,8 +2,8 @@
 
 [English](WAYLAND.md) | **简体中文**
 
-open-vm-tools 13.1.0 的原生 Wayland 后端。剪贴板与拖放在 Wayland 会话下双向可用，
-无需退回 X11 会话。
+open-vm-tools 13.1.0 的原生 Wayland 后端，本分支以 open-vm-tools-wayland 13.1.1
+发布。剪贴板与拖放在 Wayland 会话下双向可用，无需退回 X11 会话。
 
 > 上游 open-vm-tools 的桌面集成强制运行在 XWayland 上（`copyPasteDnDX11.cpp` 中无条件调用
 > `gdk_set_allowed_backends("x11")`），因此在 Wayland 会话中只能触及 Xwayland 的剪贴板，

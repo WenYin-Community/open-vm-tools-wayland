@@ -14,6 +14,10 @@
 > **[packaging/README.md](packaging/README.md)** for the targets, the dependency
 > baseline and how the replacement works.
 >
+> **Release 13.1.1:** the current release carries the upstream VGAuth fixes for
+> CVE-2026-123917 and CVE-2026-123918 (VMSA-2026-0011) and enables CodeQL code
+> scanning in CI. See **[ReleaseNotes.md](ReleaseNotes.md)**.
+>
 > **Wayland 支持：** 本分支包含原生 Wayland 后端，桌面集成（复制粘贴、拖放、文件传输）
 > 在 Wayland 会话下可用，而不再只能依赖 XWayland。功能范围、合成器支持情况、
 > `--with-wayland` 构建方式与已知限制请见 **[docs/WAYLAND.zh-CN.md](docs/WAYLAND.zh-CN.md)**。
@@ -23,6 +27,10 @@
 > 仅 x86_64。包名为 `open-vm-tools-wayland`，会替换发行版自带的 `open-vm-tools`，
 > 两者不能共存。构建目标、依赖基线与替换机制见
 > **[packaging/README.md](packaging/README.md)**。
+>
+> **13.1.1 版本：** 当前版本已包含上游针对 CVE-2026-123917 与 CVE-2026-123918
+> （VMSA-2026-0011）的 VGAuth 安全修复，并在 CI 中启用 CodeQL 代码扫描。
+> 详见 **[ReleaseNotes.md](ReleaseNotes.md)**。
 
 ## What is the open-vm-tools project?
 open-vm-tools is a set of services and modules that enable several features in VMware products for better management of, and seamless user interactions with, guests. It includes kernel modules for enhancing the performance of virtual machines running Linux or other VMware supported Unix like guest operating systems. 

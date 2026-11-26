@@ -36,8 +36,8 @@
 #
 %global have_libei %(pkg-config --exists libei-1.0 2>/dev/null && echo 1 || echo 0)
 
-%{!?srcname:     %global srcname open-vm-tools-13.1.0-25218885}
-%{!?toolsversion: %global toolsversion 13.1.0}
+%{!?srcname:     %global srcname open-vm-tools-13.1.1-25218885}
+%{!?toolsversion: %global toolsversion 13.1.1}
 
 Name:           open-vm-tools-wayland
 Version:        %{toolsversion}
@@ -119,6 +119,9 @@ This build is the upstream 13.1.0 release plus the Wayland work: clipboard and
 drag-and-drop over the Wayland data-control protocols, and, where libei is
 available, pointer integration through the XDG RemoteDesktop portal. The X11
 paths are unchanged and are still used in an X11 session.
+
+It also carries the upstream VGAuth security fixes for CVE-2026-123917 and
+CVE-2026-123918.
 
 It installs the same binaries and plugins as the distribution package, so it
 replaces it rather than living beside it.
@@ -299,6 +302,10 @@ fi
 %endif
 
 %changelog
+* Thu Nov 26 2026 Wenyin Root <wenyinos@users.noreply.github.com> - 13.1.1-1
+- Apply the upstream VGAuth security fixes for CVE-2026-123917 and
+  CVE-2026-123918 (VMSA-2026-0011).
+- Add CodeQL code scanning to CI.
 * Thu Oct 15 2026 Wenyin Root <wenyinos@users.noreply.github.com> - 13.1.0-1
 - Package the Wayland fork of open-vm-tools 13.1.0 (build %{toolsbuild}).
 - Obsolete and provide open-vm-tools so the two cannot be installed together.

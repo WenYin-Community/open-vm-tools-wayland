@@ -1,3 +1,12 @@
+open-vm-tools-wayland (13.1.1) unstable; urgency=medium
+
+  * Apply the upstream VGAuth security fixes for CVE-2026-123917 and
+    CVE-2026-123918 (VMSA-2026-0011): user name length and character checks,
+    and a per-request data size limit.
+  * Add CodeQL code scanning to CI.
+
+ -- Wenyin Root <wenyinos@users.noreply.github.com>  Thu, 26 Nov 2026 12:00:00 +0000
+
 open-vm-tools-wayland (13.1.0) unstable; urgency=medium
 
   * Package open-vm-tools 13.1.0 with the Wayland work: clipboard and

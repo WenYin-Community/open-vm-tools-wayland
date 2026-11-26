@@ -2,7 +2,8 @@
 
 **English** | [简体中文](WAYLAND.zh-CN.md)
 
-Native Wayland backend for open-vm-tools 13.1.0. Copy and paste and drag and drop
+Native Wayland backend for open-vm-tools 13.1.0, released as
+open-vm-tools-wayland 13.1.1. Copy and paste and drag and drop
 work in both directions in a Wayland session, without falling back to an X11 session.
 
 > Upstream open-vm-tools runs its desktop integration on XWayland by force

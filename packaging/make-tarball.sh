@@ -19,7 +19,7 @@ outdir="${2:-.}"
 root="$(git rev-parse --show-toplevel)"
 cd "$root"
 
-# The version, as configure declares it: TOOLS_VERSION="13.1.0".
+# The version, as configure declares it: TOOLS_VERSION="13.1.1".
 version="$(sed -n 's/^TOOLS_VERSION="\([^"]*\)".*/\1/p' \
 	open-vm-tools/configure.ac | head -1)"
 test -n "$version" || { echo "ERROR: cannot read the version from configure.ac" >&2; exit 1; }

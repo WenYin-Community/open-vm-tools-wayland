@@ -1,3 +1,36 @@
+#              open-vm-tools-wayland 13.1.1 Release Notes
+
+Updated on: 26 November 2026
+
+open-vm-tools-wayland | 26 NOVEMBER 2026 | Build 25218885
+
+open-vm-tools-wayland 13.1.1 is the Wayland fork of open-vm-tools, one patch
+release on top of the upstream 13.1.0 release (build 25218885), whose release
+notes follow below.
+
+## What's New in 13.1.1
+
+*   **VGAuth security fixes from upstream.**
+
+    CVE-2026-123917 and CVE-2026-123918 are fixed by applying the upstream
+    patches for releases 11.3.0 through 13.1.0. User names are checked for
+    length and illegal characters before use, and the total data read for a
+    single request is capped (512 bytes on the public pipe, 10 MB on a user's
+    private pipe).
+
+*   **CodeQL code scanning.**
+
+    A CodeQL workflow analyses the C/C++ sources on pushes and pull requests
+    to `master`, and once a week. It reads the source without building it, so
+    the build is untouched.
+
+*   **Unchanged from 13.1.0.**
+
+    The Wayland backend, the packaging and the known limitations are as
+    documented for 13.1.0.
+
+---
+
 #                      open-vm-tools 13.1.0 Release Notes
 
 Updated on: 12 May 2026

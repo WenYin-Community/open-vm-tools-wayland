@@ -99,7 +99,7 @@ packaging/arch/build.sh
 
 Output lands in `dist/<format>/`. `OVT_DEB_TAG=<tag>` folds a distribution tag
 into the DEB version, which is how the workflow records the release each DEB was
-built on (`13.1.0+ubuntu2204`); `OVT_NO_DEPS=1` skips the automatic dependency
+built on (`13.1.1+ubuntu2204`); `OVT_NO_DEPS=1` skips the automatic dependency
 install.
 
 Only installable packages are produced. The `-debuginfo`, `-dbgsym` and
