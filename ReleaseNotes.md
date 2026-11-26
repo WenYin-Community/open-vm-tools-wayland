@@ -24,6 +24,12 @@ notes follow below.
     to `master`, and once a week. It reads the source without building it, so
     the build is untouched.
 
+*   **Build fix for xmlsec 1.3.13.**
+
+    xmlsec 1.3.13 no longer includes `xmlsec/dl.h` from `xmlsec/app.h`, which
+    stopped the VGAuth service from building on current Arch. The header is now
+    included where the crypto dynamic-loading API is used.
+
 *   **Unchanged from 13.1.0.**
 
     The Wayland backend, the packaging and the known limitations are as
